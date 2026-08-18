@@ -1,0 +1,7 @@
+alert_id,alert_type,description,amount,new_beneficiary,unusual_location,repeated_failures,rapid_activity,known_normal_pattern
+A-1001,AML,First-time large transfer to a new beneficiary,30000,1,0,0,1,0
+F-1002,Fraud,Card purchase far above normal spending from a new location,6500,0,1,0,1,0
+C-1003,Cyber,Multiple failed logins followed by successful access,0,0,1,1,1,0
+A-1004,AML,Several transfers just below an internal review threshold,9800,0,0,0,1,0
+F-1005,Fraud,Small familiar grocery purchase,60,0,0,0,0,1
+A-1006,AML,Regular payroll deposit from known employer,2200,0,0,0,0,1

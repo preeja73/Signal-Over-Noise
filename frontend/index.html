@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Signal Over Noise MVP</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <div>
+    <h1>Signal Over Noise</h1>
+    <p>Minimum Viable Proof of Concept — AI Alert Prioritization</p>
+  </div>
+  <div id="health" class="health">Connecting...</div>
+</header>
+
+<main>
+  <section class="banner">
+    <strong>Prototype scope:</strong>
+    one core capability — <strong>risk-based prioritization of AML, Fraud, and Cybersecurity alerts.</strong>
+  </section>
+
+  <section class="card">
+    <h2>Mix-and-Match Project Alignment</h2>
+    <div class="chain">
+      <span>Canadian financial alert-overload problem</span>
+      <b>→</b>
+      <span>Phased hybrid countermeasure</span>
+      <b>→</b>
+      <span>Winning vendor solution</span>
+      <b>→</b>
+      <span>RFP risk-prioritization requirement</span>
+      <b>→</b>
+      <span>This MVP</span>
+    </div>
+  </section>
+
+  <section class="metrics">
+    <div class="metric"><span>Total demo alerts</span><strong id="total">0</strong></div>
+    <div class="metric"><span>High</span><strong id="high">0</strong></div>
+    <div class="metric"><span>Medium</span><strong id="medium">0</strong></div>
+    <div class="metric"><span>Low</span><strong id="low">0</strong></div>
+  </section>
+
+  <section class="card">
+    <div class="title-row">
+      <div>
+        <h2>Prioritization Dashboard</h2>
+        <p>Higher-risk alerts appear first for analyst review.</p>
+      </div>
+      <button onclick="loadAlerts()">Refresh</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Alert ID</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Risk Score</th>
+          <th>Priority</th>
+          <th>Explanation</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </section>
+
+  <section class="two-col">
+    <section class="card">
+      <h2>Test a New Synthetic Alert</h2>
+
+      <label>Alert type</label>
+      <select id="alert_type">
+        <option>AML</option>
+        <option>Fraud</option>
+        <option>Cyber</option>
+      </select>
+
+      <label>Transaction amount (CAD)</label>
+      <input id="amount" type="number" value="30000">
+
+      <div class="check-grid">
+        <label><input id="new_beneficiary" type="checkbox" checked> New beneficiary</label>
+        <label><input id="unusual_location" type="checkbox"> Unusual location/device</label>
+        <label><input id="repeated_failures" type="checkbox"> Repeated failed access</label>
+        <label><input id="rapid_activity" type="checkbox" checked> Rapid/repeated activity</label>
+        <label><input id="known_normal_pattern" type="checkbox"> Known normal pattern</label>
+      </div>
+
+      <button class="primary" onclick="scoreAlert()">Score Alert</button>
+
+      <div id="result" class="result">
+        Enter an alert and click <b>Score Alert</b>.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>End-to-End Function</h2>
+      <div class="flow">
+        <div><b>INPUT</b><br>Synthetic AML / Fraud / Cyber alert</div>
+        <span>→</span>
+        <div><b>PROCESSING</b><br>Flask API + ML risk scoring</div>
+        <span>→</span>
+        <div><b>OUTPUT</b><br>Score + priority + reason</div>
+        <span>→</span>
+        <div><b>BUSINESS VALUE</b><br>Analyst reviews highest risk first</div>
+      </div>
+
+      <h3>RFP capability demonstrated</h3>
+      <ul>
+        <li>Accept alert information</li>
+        <li>Generate a risk score</li>
+        <li>Assign High / Medium / Low priority</li>
+        <li>Provide an explanation</li>
+        <li>Rank alerts for analyst review</li>
+      </ul>
+    </section>
+  </section>
+
+  <section class="two-col">
+    <section class="card">
+      <h2>Working in This MVP</h2>
+      <ul>
+        <li>Browser frontend</li>
+        <li>Python Flask backend</li>
+        <li>REST API</li>
+        <li>Simple ML model</li>
+        <li>Risk scoring and prioritization</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Simulated / Future Implementation</h2>
+      <ul>
+        <li>Synthetic alert data</li>
+        <li>Mock connection to real bank systems</li>
+        <li>Simplified model, not a production model</li>
+        <li>No production authentication / audit logging</li>
+        <li>Next step: controlled pilot with representative data and secure APIs</li>
+      </ul>
+    </section>
+  </section>
+
+  <section class="footer-note">
+    This MVP demonstrates the prioritization capability only.
+    It does not prove the final alert-volume or false-positive KPI targets.
+  </section>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
