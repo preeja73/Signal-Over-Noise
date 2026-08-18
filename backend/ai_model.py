@@ -63,26 +63,37 @@ class SignalOverNoiseModel:
         probability = float(self.pipeline.predict_proba(row)[0][1])
         risk_score = round(probability * 100, 1)
 
-        if risk_score >= 70:
+        if risk_score >= 85:
+            priority = "Critical"
+        elif risk_score >= 70:
             priority = "High"
         elif risk_score >= 40:
             priority = "Medium"
         else:
             priority = "Low"
 
+        amount = float(alert.get("amount", 0))
+        new_beneficiary = int(alert.get("new_beneficiary", 0))
+        unusual_location = int(alert.get("unusual_location", 0))
+        repeated_failures = int(alert.get("repeated_failures", 0))
+        rapid_activity = int(alert.get("rapid_activity", 0))
+        known_normal_pattern = int(alert.get("known_normal_pattern", 0))
+
         reasons = []
-        if float(alert.get("amount", 0)) >= 20000:
-            reasons.append("large transaction amount")
-        if int(alert.get("new_beneficiary", 0)):
+        if amount >= 20000:
+            reasons.append("unusual transaction amount")
+        if new_beneficiary:
             reasons.append("new beneficiary")
-        if int(alert.get("unusual_location", 0)):
+        if unusual_location:
             reasons.append("unusual location/device")
-        if int(alert.get("repeated_failures", 0)):
+        if repeated_failures:
             reasons.append("repeated failed access")
-        if int(alert.get("rapid_activity", 0)):
-            reasons.append("rapid/repeated activity")
-        if int(alert.get("known_normal_pattern", 0)):
-            reasons.append("known normal pattern")
+        if rapid_activity:
+            reasons.append("multiple rapid transfers")
+        if known_normal_pattern:
+            reasons.append("consistent with the customer's normal pattern")
+        elif amount >= 20000 or new_beneficiary or unusual_location or rapid_activity:
+            reasons.append("activity inconsistent with the customer's normal pattern")
 
         if not reasons:
             reasons = ["combined model features"]

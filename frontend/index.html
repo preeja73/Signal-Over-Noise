@@ -10,62 +10,52 @@
 <header>
   <div>
     <h1>Signal Over Noise</h1>
-    <p>Minimum Viable Proof of Concept — AI Alert Prioritization</p>
+    <p>Fraud and AML analyst workspace — alerts ranked by risk, not equal priority</p>
   </div>
   <div id="health" class="health">Connecting...</div>
 </header>
 
 <main>
   <section class="banner">
-    <strong>Prototype scope:</strong>
-    one core capability — <strong>risk-based prioritization of AML, Fraud, and Cybersecurity alerts.</strong>
-  </section>
-
-  <section class="card">
-    <h2>Mix-and-Match Project Alignment</h2>
-    <div class="chain">
-      <span>Canadian financial alert-overload problem</span>
-      <b>→</b>
-      <span>Phased hybrid countermeasure</span>
-      <b>→</b>
-      <span>Winning vendor solution</span>
-      <b>→</b>
-      <span>RFP risk-prioritization requirement</span>
-      <b>→</b>
-      <span>This MVP</span>
-    </div>
+    <strong>Analyst workflow:</strong>
+    this dashboard does not make the final decision. It ranks alerts so fraud and AML analysts review the highest-risk cases first, then investigate, escalate, or close them.
   </section>
 
   <section class="metrics">
-    <div class="metric"><span>Total demo alerts</span><strong id="total">0</strong></div>
-    <div class="metric"><span>High</span><strong id="high">0</strong></div>
-    <div class="metric"><span>Medium</span><strong id="medium">0</strong></div>
-    <div class="metric"><span>Low</span><strong id="low">0</strong></div>
+    <div class="metric"><span>Total alerts today</span><strong id="total">0</strong></div>
+    <div class="metric"><span>High-risk alerts</span><strong id="highRisk">0</strong></div>
+    <div class="metric"><span>False-positive rate</span><strong id="fpRate">—</strong></div>
+    <div class="metric"><span>Waiting for review</span><strong id="waiting">0</strong></div>
+    <div class="metric"><span>Avg investigation time</span><strong id="avgTime">—</strong></div>
   </section>
 
   <section class="card">
     <div class="title-row">
       <div>
-        <h2>Prioritization Dashboard</h2>
-        <p>Higher-risk alerts appear first for analyst review.</p>
+        <h2>Prioritized Alert Queue</h2>
+        <p>Instead of hundreds of alerts with the same priority, the queue is ranked by risk score.</p>
       </div>
       <button onclick="loadAlerts()">Refresh</button>
     </div>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Rank</th>
-          <th>Alert ID</th>
-          <th>Type</th>
-          <th>Description</th>
-          <th>Risk Score</th>
-          <th>Priority</th>
-          <th>Explanation</th>
-        </tr>
-      </thead>
-      <tbody id="rows"></tbody>
-    </table>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Customer / Account</th>
+            <th>Type</th>
+            <th>Risk Score</th>
+            <th>Priority</th>
+            <th>Reason</th>
+            <th>Time received</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
   </section>
 
   <section class="two-col">
@@ -113,11 +103,26 @@
       <ul>
         <li>Accept alert information</li>
         <li>Generate a risk score</li>
-        <li>Assign High / Medium / Low priority</li>
+        <li>Assign Critical / High / Medium / Low priority</li>
         <li>Provide an explanation</li>
         <li>Rank alerts for analyst review</li>
       </ul>
     </section>
+  </section>
+
+  <section class="card">
+    <h2>Mix-and-Match Project Alignment</h2>
+    <div class="chain">
+      <span>Canadian financial alert-overload problem</span>
+      <b>→</b>
+      <span>Phased hybrid countermeasure</span>
+      <b>→</b>
+      <span>Winning vendor solution</span>
+      <b>→</b>
+      <span>RFP risk-prioritization requirement</span>
+      <b>→</b>
+      <span>This MVP</span>
+    </div>
   </section>
 
   <section class="two-col">
@@ -129,6 +134,7 @@
         <li>REST API</li>
         <li>Simple ML model</li>
         <li>Risk scoring and prioritization</li>
+        <li>Analyst review, escalate, and close actions</li>
       </ul>
     </section>
 
@@ -149,6 +155,16 @@
     It does not prove the final alert-volume or false-positive KPI targets.
   </section>
 </main>
+
+<div id="drawer" class="drawer hidden" onclick="if(event.target.id==='drawer') closeAlert()">
+  <aside class="drawer-panel" role="dialog" aria-labelledby="drawerTitle">
+    <div class="title-row">
+      <h2 id="drawerTitle">Alert review</h2>
+      <button onclick="closeAlert()">Close</button>
+    </div>
+    <div id="drawerBody"></div>
+  </aside>
+</div>
 
 <script src="app.js"></script>
 </body>
