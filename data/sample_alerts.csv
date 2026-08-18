@@ -1,7 +1,7 @@
-alert_id,alert_type,description,amount,new_beneficiary,unusual_location,repeated_failures,rapid_activity,known_normal_pattern
-A-1001,AML,First-time large transfer to a new beneficiary,30000,1,0,0,1,0
-F-1002,Fraud,Card purchase far above normal spending from a new location,6500,0,1,0,1,0
-C-1003,Cyber,Multiple failed logins followed by successful access,0,0,1,1,1,0
-A-1004,AML,Several transfers just below an internal review threshold,9800,0,0,0,1,0
-F-1005,Fraud,Small familiar grocery purchase,60,0,0,0,0,1
-A-1006,AML,Regular payroll deposit from known employer,2200,0,0,0,0,1
+alert_id,alert_type,customer,account,description,amount,new_beneficiary,unusual_location,repeated_failures,rapid_activity,known_normal_pattern,received_at,status,disposition,investigation_minutes
+A-1001,AML,Jordan Hale,4482-****-9103,First-time large transfer to a new beneficiary,30000,1,0,0,1,0,Today 07:12,Waiting for review,,
+F-1002,Fraud,Priya Nair,7721-****-4418,Card purchase far above normal spending from a new location,6500,0,1,0,1,0,Today 08:04,Waiting for review,,
+C-1003,Cyber,Marcus Webb,1904-****-6620,Multiple failed logins followed by successful access,0,0,1,1,1,0,Today 08:31,Waiting for review,,
+A-1004,AML,Elena Rossi,3308-****-2209,Several transfers just below an internal review threshold,9800,0,0,0,1,0,Today 09:18,Escalated,,22
+F-1005,Fraud,David Okonkwo,5512-****-1184,Small familiar grocery purchase,60,0,0,0,0,1,Today 09:45,Closed,False positive,8
+A-1006,AML,Sarah Kim,6640-****-5502,Regular payroll deposit from known employer,2200,0,0,0,0,1,Today 10:02,Closed,False positive,6
